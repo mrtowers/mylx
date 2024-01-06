@@ -1,7 +1,7 @@
 [bits 16]
 [org 0x7C00]
 
-%define NUMBER_OF_SECTORS 1
+%define NUMBER_OF_SECTORS 32
 %define LOAD_POSITION 0x0500
 
 _start:
