@@ -1,25 +1,20 @@
-[bits 16]
-[org 0x7C00]
+[bits 32]
+[org 0x10000]
 
 _start:
 	mov bx, helloworld
 	call print
-	call tests
-	jmp .halt
 
 .halt:
 	jmp $
 
 print: ;bx - pointer to text
-
-.loop:
 	mov al, [bx]
 	call print_char
 	inc bx
 	mov ah, [bx]
 	cmp ah, 0
-	jne .loop
-.end:
+	jne print
 	ret
 	
 print_char: ;al - char
@@ -27,11 +22,5 @@ print_char: ;al - char
 	int 0x10
 	ret
 
-tests:
-	ret
-
 helloworld:
 	db 'MYLX v0.1', 0
-	
-times 510 - ($ - $$) db 0
-dw 0xAA55
