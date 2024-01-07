@@ -7,10 +7,10 @@ build/floppy.img: build/kernel.bin build/bootloader.bin
 	dd if=build/bootloader.bin of=build/floppy.img conv=notrunc
 	dd if=build/kernel.bin of=build/floppy.img seek=1 conv=notrunc
 	
-build/kernel.bin: src/kernel.asm
+build/kernel.bin: src/kernel.asm build
 	nasm -o build/kernel.bin src/kernel.asm
 
-build/bootloader.bin: src/bootloader.asm
+build/bootloader.bin: src/bootloader.asm build
 	nasm -o build/bootloader.bin src/bootloader.asm
 	
 build:
